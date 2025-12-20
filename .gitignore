@@ -248,3 +248,46 @@ Thumbs.db
 data/
 downloads/
 models/
+# Python / AI Demo Junk
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv
+pip-delete-this-directory.txt
+pip-wheel-metadata/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Streamlit / Gradio Specifics
+.streamlit/secrets.toml
+.streamlit/cache/
+*.streamlit
+
+# Logs and Temp
+*.log
+logs/
+tmp/
+temp/
+.cache/
+*.tmp
+*.swp
+*~
+
+# OS / Editor Files
+.DS_Store
+Thumbs.db
+*.desktop
+
+# Git Itself
+.git
+.gitignore~
+
+# Large Data (No Models, Archives, or Sessions)
+data/
+downloads/
+models/
