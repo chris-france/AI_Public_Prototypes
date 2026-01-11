@@ -1,4 +1,4 @@
-# CascadeSwarm
+# AI Prototypes
 
 AI/ML Proof-of-Concept Prototypes
 
