@@ -1,0 +1,53 @@
+The Transformer Architecture
+
+The Transformer is a neural network architecture introduced in the paper "Attention Is All You Need" by Vaswani et al. in 2017. It has become the foundation for most modern natural language processing models, including BERT, GPT, and T5.
+
+Self-Attention Mechanism
+
+The core innovation of the Transformer is the self-attention mechanism, also known as scaled dot-product attention. This mechanism allows the model to weigh the importance of different parts of the input sequence when processing each element.
+
+Given an input sequence, self-attention computes three vectors for each token: Query (Q), Key (K), and Value (V). The attention scores are calculated as the dot product of queries and keys, scaled by the square root of the key dimension, and passed through a softmax function. The output is a weighted sum of the values.
+
+The formula is: Attention(Q, K, V) = softmax(QK^T / sqrt(d_k)) V
+
+Multi-Head Attention
+
+Instead of performing a single attention function, the Transformer uses multi-head attention. This allows the model to jointly attend to information from different representation subspaces. Each head performs attention independently, and the outputs are concatenated and linearly transformed.
+
+Multi-head attention enables the model to capture different types of relationships between tokens simultaneously. For example, one head might focus on syntactic relationships while another captures semantic similarity.
+
+Encoder-Decoder Architecture
+
+The original Transformer consists of an encoder and a decoder, each composed of stacked layers.
+
+The encoder processes the input sequence and produces a continuous representation. Each encoder layer contains a multi-head self-attention sublayer followed by a position-wise feed-forward network. Residual connections and layer normalization are applied around each sublayer.
+
+The decoder generates the output sequence one token at a time. Each decoder layer contains three sublayers: masked multi-head self-attention (preventing positions from attending to future positions), multi-head cross-attention over the encoder output, and a position-wise feed-forward network.
+
+Positional Encoding
+
+Since the Transformer does not use recurrence or convolution, it needs a way to encode the position of tokens in the sequence. Positional encodings are added to the input embeddings to provide position information. The original paper uses sinusoidal functions of different frequencies for this purpose.
+
+Training and Optimization
+
+Transformers are typically trained using the Adam optimizer with a learning rate warmup schedule. The warmup increases the learning rate linearly for a set number of steps before decreasing it proportionally to the inverse square root of the step number.
+
+Label smoothing is also used during training, which helps prevent the model from becoming overconfident in its predictions.
+
+Applications and Variants
+
+BERT (Bidirectional Encoder Representations from Transformers) uses only the encoder and is pre-trained with masked language modeling and next sentence prediction. It excels at understanding tasks like classification and question answering.
+
+GPT (Generative Pre-trained Transformer) uses only the decoder and is trained autoregressively. It excels at text generation tasks and has been scaled to increasingly larger models (GPT-2, GPT-3, GPT-4).
+
+T5 (Text-to-Text Transfer Transformer) frames all NLP tasks as text-to-text problems and uses the full encoder-decoder architecture.
+
+Vision Transformers (ViT) adapt the Transformer for image classification by splitting images into patches and treating them as token sequences.
+
+Scaling Laws
+
+Research has shown that Transformer performance follows predictable scaling laws based on model size, dataset size, and compute budget. Larger models with more data generally perform better, following power-law relationships. This has driven the trend toward increasingly large language models.
+
+Efficiency Improvements
+
+Several techniques have been developed to improve Transformer efficiency. Sparse attention patterns reduce the quadratic complexity of self-attention. Flash Attention optimizes memory access patterns for GPU hardware. Mixture of Experts models activate only a subset of parameters for each input, enabling larger models without proportionally more computation.

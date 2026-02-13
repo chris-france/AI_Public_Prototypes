@@ -1,0 +1,10 @@
+# Local RAG System Dependencies
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+qdrant-client==1.12.1
+PyPDF2==3.0.1
+python-docx==1.1.2
+httpx==0.28.1
+pyyaml>=6.0
+aiofiles>=23.2.0
