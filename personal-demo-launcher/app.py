@@ -17,6 +17,7 @@ import sys
 import threading
 import time
 from pathlib import Path
+from typing import Optional
 
 import streamlit as st
 
@@ -224,7 +225,7 @@ def ensure_docker_running() -> bool:
     return False
 
 
-def ensure_dependencies(demo: dict) -> str | None:
+def ensure_dependencies(demo: dict) -> Optional[str]:
     """Start any required infrastructure for a demo. Return error or None."""
     for dep in demo.get("requires", []):
         if is_port_open(dep["port"]):
@@ -246,7 +247,7 @@ def ensure_dependencies(demo: dict) -> str | None:
     return None
 
 
-def start_demo(demo: dict, wait: bool = True) -> str | None:
+def start_demo(demo: dict, wait: bool = True) -> Optional[str]:
     """Start a demo. Return error message on failure, None on success."""
     port = demo["port"]
 
