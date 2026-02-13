@@ -31,7 +31,7 @@ BASE_DIR = Path(os.environ.get("DEMO_BASE_DIR", Path.home()))
 # ---------------------------------------------------------------------------
 
 _MANAGED_PORTS = [8601, 8602, 8603, 8604, 8605, 8606, 8607]
-_DOCKER_PROJECTS = [str(BASE_DIR / "local-rag")]
+_DOCKER_PROJECTS = [str(BASE_DIR / "local-rag-system")]
 
 
 def _get_pids_on_port(port: int) -> list[int]:
@@ -99,7 +99,7 @@ st.set_page_config(
 DEMOS = [
     {
         "name": "Inference Cost Calculator",
-        "path": str(BASE_DIR / "ai-inference-calculator"),
+        "path": str(BASE_DIR / "ai-inference-cost-calculator"),
         "description": "Compare TCO for local GPU inference vs cloud providers over 36 months. Break-even analysis, hardware amortization, and cost-per-1K inference comparison.",
         "tech": ["Streamlit", "Plotly", "Pandas"],
         "port": 8601,
@@ -117,7 +117,7 @@ DEMOS = [
     },
     {
         "name": "Datacenter Optimization & Valuation",
-        "path": str(BASE_DIR / "datacenter-deployment-optimizer"),
+        "path": str(BASE_DIR / "datacenter-optimization-valuation"),
         "description": "PE/VC datacenter investment analysis. Compare ground-up, modular, and hybrid builds with M&A asset valuation across 14 global markets.",
         "tech": ["Streamlit", "Plotly", "Pandas", "NumPy", "Ollama"],
         "port": 8603,
@@ -126,7 +126,7 @@ DEMOS = [
     },
     {
         "name": "Model Security Scanner",
-        "path": str(BASE_DIR / "ai-security-validator"),
+        "path": str(BASE_DIR / "model-security-scanner"),
         "description": "Test LLM security across 10 attack categories. Scans Ollama models and Claude API for vulnerabilities.",
         "tech": ["Streamlit", "Plotly", "Ollama", "Anthropic API"],
         "port": 8604,
@@ -135,7 +135,7 @@ DEMOS = [
     },
     {
         "name": "Local RAG System",
-        "path": str(BASE_DIR / "local-rag"),
+        "path": str(BASE_DIR / "local-rag-system"),
         "description": "Open WebUI + Qdrant for persistent memory. Chat with Ollama models, upload docs, memory persists across sessions.",
         "tech": ["Open WebUI", "Qdrant", "Ollama", "Docker"],
         "port": 8605,
@@ -153,14 +153,14 @@ DEMOS = [
     },
     {
         "name": "Query-Driven Memory (QDM)",
-        "path": str(BASE_DIR / "qdmem"),
+        "path": str(BASE_DIR / "query-driven-memory"),
         "description": "Persistent AI memory system. Automatically retrieves relevant past conversations on every query — no manual selection needed. Memories reinforce with use and decay over time.",
         "tech": ["Streamlit", "Qdrant", "Ollama"],
         "port": 8607,
         "cmd": "python3 -m streamlit run app.py --server.port {port} --server.headless true",
         "type": "streamlit",
         "requires": [
-            {"port": 6333, "docker_project": str(BASE_DIR / "local-rag"), "service": "qdrant", "label": "Qdrant"},
+            {"port": 6333, "docker_project": str(BASE_DIR / "local-rag-system"), "service": "qdrant", "label": "Qdrant"},
         ],
     },
 ]
