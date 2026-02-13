@@ -4,6 +4,8 @@
 
 A Streamlit chat application that automatically retrieves relevant past conversations on every query. No manual selection needed — QDM searches all stored memories, injects relevant context, and adapts over time. Frequently accessed memories strengthen; unused memories gradually fade and get pruned.
 
+> **Source code available upon request.** QDM is a proprietary implementation demonstrated as part of this portfolio. Contact me directly for a live demo or code walkthrough.
+
 ---
 
 ## Key Features
@@ -24,27 +26,31 @@ A Streamlit chat application that automatically retrieves relevant past conversa
 5. Both your question and the response are stored as new memories
 6. Retrieved memories get a relevance boost; untouched memories decay
 
+## Architecture
+
+QDM sits between the user and Ollama, adding a persistent memory layer powered by Qdrant vector search. The memory system mirrors human memory — frequently recalled information stays sharp, unused information gradually fades, and critical information can be permanently preserved.
+
+### Memory Lifecycle
+
+| Event | Effect |
+|-------|--------|
+| New memory stored | Starts at relevance 10.0 |
+| Memory retrieved as context | Score increases by 1.0 |
+| Memory sits unused | Score decreases by (days idle x decay rate) |
+| Score drops below 1.0, 90+ days old | Eligible for pruning |
+| Memory is pinned | Immune to decay and pruning forever |
+
 ## Tech Stack
 
 Streamlit, Qdrant, Ollama
 
-## Prerequisites
+## What Makes QDM Different from RAG
 
-- [Ollama](https://ollama.ai) running locally with `llama3.2:3b` and `nomic-embed-text` pulled
-- [Qdrant](https://qdrant.tech) running on port 6333 (started automatically by the Personal Demo Launcher, or via `docker compose up -d` in the local-rag-system project)
+| | RAG | QDM |
+|---|---|---|
+| **What it stores** | Documents you upload | Everything you discuss, automatically |
+| **How you select context** | Manually choose with `#` | Automatic on every query |
+| **Mental model** | A filing cabinet you open manually | An assistant that checks the cabinet for you |
+| **Session continuity** | Each session starts fresh | Every session accesses all past sessions |
 
-## Quick Start
-
-```bash
-cd query-driven-memory
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-streamlit run app.py
-```
-
-Opens at [http://localhost:8607](http://localhost:8607).
-
-## License
-
-[MIT](LICENSE)
+See [USER_GUIDE.md](USER_GUIDE.md) for the full feature walkthrough, interface guide, and v2.0 roadmap.

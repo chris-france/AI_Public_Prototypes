@@ -15,7 +15,7 @@ Each project runs locally and is designed to showcase practical AI capabilities 
 | [Datacenter Optimization & Valuation](datacenter-optimization-valuation/) | PE/VC datacenter investment analysis with M&A valuation across 14 global markets | Streamlit, Plotly, Ollama |
 | [Model Security Scanner](model-security-scanner/) | LLM vulnerability testing across 10 attack categories for Ollama and Claude models | Streamlit, Plotly, Ollama |
 | [Local RAG System](local-rag-system/) | Private AI chat with persistent document memory — fully local, no API keys | Docker, FastAPI, Qdrant, Ollama |
-| [Query-Driven Memory](query-driven-memory/) | Persistent AI memory with automatic retrieval — memories reinforce with use and decay over time | Streamlit, Qdrant, Ollama |
+| [Query-Driven Memory](query-driven-memory/) | Persistent AI memory with automatic retrieval — memories reinforce with use and decay over time *(code available upon request)* | Streamlit, Qdrant, Ollama |
 | [Personal Demo Launcher](personal-demo-launcher/) | Single dashboard to start, stop, and monitor all demo projects | Streamlit |
 
 ## Quick Start
