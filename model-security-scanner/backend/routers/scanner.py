@@ -84,7 +84,7 @@ def run_scan(req: ScanRequest):
 
 
 @router.get("/history")
-def scan_history(limit: int = Query(default=50)):
+def scan_history(limit: int = Query(default=200)):
     return get_scan_history(limit)
 
 

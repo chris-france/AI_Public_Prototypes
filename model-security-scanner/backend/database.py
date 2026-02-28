@@ -40,7 +40,7 @@ def save_scan(model_name: str, total_score: int, max_score: int, results: list[d
     conn.close()
 
 
-def get_scan_history(limit: int = 50) -> list[dict]:
+def get_scan_history(limit: int = 200) -> list[dict]:
     conn = _conn()
     cursor = conn.execute(
         "SELECT id, model_name, scan_date, total_score, max_score, results_json FROM scan_history ORDER BY scan_date DESC LIMIT ?",

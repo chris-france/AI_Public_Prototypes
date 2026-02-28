@@ -61,15 +61,15 @@ export default function App() {
           </>
         )}
 
-        {history.length > 0 && (
+        {(scanResults.length > 0 || history.length > 0) && (
           <>
             <div className="border-t border-gray-200 pt-6 mt-2">
               <div className="flex items-center gap-2 mb-6">
                 <Target size={20} className="text-france-blue" />
                 <h2 className="text-lg font-bold text-gray-900">Model Comparison</h2>
               </div>
-              <SummaryStats history={history} />
-              <div className="mt-6"><ComparisonChart history={history} /></div>
+              <SummaryStats scanResults={scanResults} history={history} />
+              <div className="mt-6"><ComparisonChart scanResults={scanResults} history={history} /></div>
             </div>
             <HistoryTable history={history} />
           </>

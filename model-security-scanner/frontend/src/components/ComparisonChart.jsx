@@ -6,13 +6,23 @@ const getColor = (score) => {
   return '#ef4444'
 }
 
-export default function ComparisonChart({ history }) {
-  // Best score per model
+export default function ComparisonChart({ scanResults = [], history = [] }) {
+  // Prefer live scan results when available; fall back to history
   const modelScores = {}
-  for (const h of history) {
-    const pct = h.max_score > 0 ? (h.total_score / h.max_score) * 100 : 0
-    if (!modelScores[h.model_name] || pct > modelScores[h.model_name]) {
-      modelScores[h.model_name] = pct
+
+  if (scanResults.length > 0) {
+    for (const s of scanResults) {
+      const pct = s.max_score > 0 ? (s.total_score / s.max_score) * 100 : 0
+      if (!modelScores[s.model] || pct > modelScores[s.model]) {
+        modelScores[s.model] = pct
+      }
+    }
+  } else {
+    for (const h of history) {
+      const pct = h.max_score > 0 ? (h.total_score / h.max_score) * 100 : 0
+      if (!modelScores[h.model_name] || pct > modelScores[h.model_name]) {
+        modelScores[h.model_name] = pct
+      }
     }
   }
 

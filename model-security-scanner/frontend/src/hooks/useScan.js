@@ -23,6 +23,7 @@ export default function useScan(onComplete) {
       function read() {
         reader.read().then(({ done, value }) => {
           if (done) {
+            // Stream ended — final cleanup (scan_complete may have already fired)
             setScanning(false)
             onComplete?.()
             return
@@ -42,7 +43,7 @@ export default function useScan(onComplete) {
                 setProgress({
                   model: event.model,
                   testIndex: 0,
-                  totalTests: event.total_models ? 10 : 10,
+                  totalTests: 10,
                   testName: 'Starting...',
                   modelIndex: event.model_index,
                   totalModels: event.total_models,
@@ -55,11 +56,21 @@ export default function useScan(onComplete) {
                   testName: event.test_name,
                 }))
               } else if (event.type === 'test_result') {
-                currentResults[event.model].results.push(event.result)
+                if (currentResults[event.model]) {
+                  currentResults[event.model].results.push(event.result)
+                }
               } else if (event.type === 'model_done') {
-                currentResults[event.model].total_score = event.total_score
-                currentResults[event.model].max_score = event.max_score
-                setScanResults(Object.values({ ...currentResults }))
+                if (currentResults[event.model]) {
+                  currentResults[event.model].total_score = event.total_score
+                  currentResults[event.model].max_score = event.max_score
+                }
+                // Deep copy all results so React sees new object references
+                setScanResults(
+                  Object.values(currentResults).map(r => ({
+                    ...r,
+                    results: [...r.results],
+                  }))
+                )
               } else if (event.type === 'scan_complete') {
                 setScanning(false)
                 onComplete?.()
