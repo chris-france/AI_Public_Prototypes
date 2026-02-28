@@ -1,28 +1,73 @@
 #!/bin/bash
-# Model Security Scanner - Launch Script
+set -m
 
-cd "$(dirname "$0")"
+echo "========================================"
+echo "  Model Security Scanner"
+echo "  Chris France — AI & Infrastructure"
+echo "========================================"
 
-if [ ! -d "venv" ]; then
-    echo "Creating virtual environment..."
-    python3 -m venv venv
-fi
+SOURCE="$0"
+while [ -L "$SOURCE" ]; do
+  DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ "$SOURCE" != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
 
-source venv/bin/activate
-echo "Installing dependencies..."
-pip install -q -r requirements.txt
+BACKEND_PORT=3904
+FRONTEND_PORT=8604
+HEADLESS=false
 
-# Check Ollama status
+for arg in "$@"; do
+  case "$arg" in
+    --headless) HEADLESS=true ;;
+  esac
+done
+
+cleanup() {
+  echo ""
+  echo "Shutting down Model Security Scanner..."
+  lsof -ti :"$BACKEND_PORT" 2>/dev/null | xargs kill -9 2>/dev/null
+  lsof -ti :"$FRONTEND_PORT" 2>/dev/null | xargs kill -9 2>/dev/null
+  pkill -f "uvicorn main:app.*--port $BACKEND_PORT" 2>/dev/null
+  pkill -f "vite.*--port $FRONTEND_PORT" 2>/dev/null
+  echo "Stopped."
+}
+trap cleanup INT TERM EXIT
+
+lsof -ti :"$BACKEND_PORT" | xargs kill 2>/dev/null
+lsof -ti :"$FRONTEND_PORT" | xargs kill 2>/dev/null
+sleep 1
+
 echo ""
-if curl -s http://localhost:11434/api/tags > /dev/null 2>&1; then
-    echo "✓ Ollama is running"
-else
-    echo "⚠ Ollama not running — local model scanning will be unavailable"
-    echo "  To enable: ollama serve"
-fi
+echo "[1/2] Starting backend (FastAPI on :$BACKEND_PORT)..."
+(
+  cd "$DIR/backend"
+  pip3 install -r requirements.txt -q 2>/dev/null
+  exec python3 -m uvicorn main:app --reload --port "$BACKEND_PORT"
+) &
 
-echo ""
-echo "Starting Model Security Scanner..."
-echo ""
+echo "[2/2] Starting frontend (Vite on :$FRONTEND_PORT)..."
+(
+  cd "$DIR/frontend"
+  npm install --silent 2>/dev/null
+  exec npx vite --host --port "$FRONTEND_PORT"
+) &
 
-streamlit run app.py --server.headless true --browser.gatherUsageStats false
+for i in $(seq 1 30); do
+  if curl -s http://localhost:"$FRONTEND_PORT" > /dev/null 2>&1; then
+    echo ""
+    echo "  Model Security Scanner is ready:"
+    echo "    Local:  http://localhost:$FRONTEND_PORT"
+    echo ""
+    echo "    Press Ctrl+C to stop."
+    echo ""
+    if [ "$HEADLESS" = false ]; then
+      open "http://localhost:$FRONTEND_PORT"
+    fi
+    break
+  fi
+  sleep 1
+done
+
+wait

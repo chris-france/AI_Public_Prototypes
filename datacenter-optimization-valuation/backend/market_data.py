@@ -1,0 +1,24 @@
+"""Market benchmarks and deployment approaches."""
+
+MARKET_BENCHMARKS = {
+    "Northern Virginia (NOVA)": {"capex_per_mw": 8_500_000, "land_cost_per_acre": 450_000, "power_cost_kwh": 0.065, "labor_multiplier": 1.0, "market_premium": 1.15, "avg_pue": 1.35, "market_utilization": 0.78, "transaction_comp_per_mw": 12_500_000, "demand_growth": 0.18, "tier": 1},
+    "Dallas-Fort Worth": {"capex_per_mw": 7_200_000, "land_cost_per_acre": 180_000, "power_cost_kwh": 0.058, "labor_multiplier": 0.85, "market_premium": 1.05, "avg_pue": 1.40, "market_utilization": 0.72, "transaction_comp_per_mw": 10_800_000, "demand_growth": 0.22, "tier": 1},
+    "Phoenix": {"capex_per_mw": 7_000_000, "land_cost_per_acre": 200_000, "power_cost_kwh": 0.072, "labor_multiplier": 0.90, "market_premium": 1.08, "avg_pue": 1.38, "market_utilization": 0.68, "transaction_comp_per_mw": 10_200_000, "demand_growth": 0.25, "tier": 1},
+    "Chicago": {"capex_per_mw": 8_000_000, "land_cost_per_acre": 280_000, "power_cost_kwh": 0.078, "labor_multiplier": 1.10, "market_premium": 1.0, "avg_pue": 1.42, "market_utilization": 0.70, "transaction_comp_per_mw": 11_000_000, "demand_growth": 0.12, "tier": 1},
+    "Silicon Valley": {"capex_per_mw": 12_000_000, "land_cost_per_acre": 2_500_000, "power_cost_kwh": 0.145, "labor_multiplier": 1.45, "market_premium": 1.35, "avg_pue": 1.30, "market_utilization": 0.85, "transaction_comp_per_mw": 18_000_000, "demand_growth": 0.15, "tier": 1},
+    "New York/New Jersey": {"capex_per_mw": 11_500_000, "land_cost_per_acre": 1_800_000, "power_cost_kwh": 0.125, "labor_multiplier": 1.40, "market_premium": 1.25, "avg_pue": 1.38, "market_utilization": 0.82, "transaction_comp_per_mw": 16_500_000, "demand_growth": 0.14, "tier": 1},
+    "Atlanta": {"capex_per_mw": 7_500_000, "land_cost_per_acre": 220_000, "power_cost_kwh": 0.082, "labor_multiplier": 0.88, "market_premium": 0.95, "avg_pue": 1.45, "market_utilization": 0.65, "transaction_comp_per_mw": 9_500_000, "demand_growth": 0.16, "tier": 2},
+    "Seattle": {"capex_per_mw": 9_500_000, "land_cost_per_acre": 850_000, "power_cost_kwh": 0.048, "labor_multiplier": 1.15, "market_premium": 1.12, "avg_pue": 1.28, "market_utilization": 0.75, "transaction_comp_per_mw": 13_500_000, "demand_growth": 0.20, "tier": 1},
+    "Los Angeles": {"capex_per_mw": 10_500_000, "land_cost_per_acre": 1_200_000, "power_cost_kwh": 0.135, "labor_multiplier": 1.30, "market_premium": 1.18, "avg_pue": 1.35, "market_utilization": 0.78, "transaction_comp_per_mw": 14_500_000, "demand_growth": 0.13, "tier": 1},
+    "Amsterdam": {"capex_per_mw": 9_000_000, "land_cost_per_acre": 1_100_000, "power_cost_kwh": 0.115, "labor_multiplier": 1.20, "market_premium": 1.15, "avg_pue": 1.32, "market_utilization": 0.80, "transaction_comp_per_mw": 14_000_000, "demand_growth": 0.10, "tier": 1},
+    "London": {"capex_per_mw": 11_000_000, "land_cost_per_acre": 2_200_000, "power_cost_kwh": 0.155, "labor_multiplier": 1.35, "market_premium": 1.28, "avg_pue": 1.35, "market_utilization": 0.82, "transaction_comp_per_mw": 17_000_000, "demand_growth": 0.11, "tier": 1},
+    "Frankfurt": {"capex_per_mw": 9_500_000, "land_cost_per_acre": 950_000, "power_cost_kwh": 0.175, "labor_multiplier": 1.25, "market_premium": 1.20, "avg_pue": 1.38, "market_utilization": 0.85, "transaction_comp_per_mw": 15_000_000, "demand_growth": 0.09, "tier": 1},
+    "Singapore": {"capex_per_mw": 13_000_000, "land_cost_per_acre": 3_500_000, "power_cost_kwh": 0.125, "labor_multiplier": 1.10, "market_premium": 1.40, "avg_pue": 1.55, "market_utilization": 0.92, "transaction_comp_per_mw": 20_000_000, "demand_growth": 0.08, "tier": 1},
+    "Tokyo": {"capex_per_mw": 14_000_000, "land_cost_per_acre": 4_000_000, "power_cost_kwh": 0.165, "labor_multiplier": 1.15, "market_premium": 1.45, "avg_pue": 1.45, "market_utilization": 0.88, "transaction_comp_per_mw": 21_000_000, "demand_growth": 0.07, "tier": 1},
+}
+
+DEPLOYMENT_APPROACHES = {
+    "ground_up": {"name": "Ground-Up Build", "base_timeline_months": 24, "timeline_variance": 6, "capex_multiplier": 1.0, "opex_efficiency": 0.95, "flexibility_score": 85, "resale_premium": 1.15, "risk_factors": ["Permitting delays", "Supply chain", "Labor availability", "Weather"], "typical_pue": 1.30, "scalability": "High", "customization": "Full"},
+    "modular": {"name": "Modular/Prefab", "base_timeline_months": 9, "timeline_variance": 2, "capex_multiplier": 1.12, "opex_efficiency": 1.0, "flexibility_score": 95, "resale_premium": 0.95, "risk_factors": ["Module availability", "Transportation logistics"], "typical_pue": 1.35, "scalability": "Very High", "customization": "Limited"},
+    "hybrid": {"name": "Hybrid Build", "base_timeline_months": 15, "timeline_variance": 3, "capex_multiplier": 1.05, "opex_efficiency": 0.98, "flexibility_score": 90, "resale_premium": 1.08, "risk_factors": ["Coordination complexity", "Shell construction delays"], "typical_pue": 1.32, "scalability": "High", "customization": "Moderate"},
+}

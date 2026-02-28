@@ -1,39 +1,73 @@
 #!/bin/bash
-# Datacenter Demand Simulator - Launch Script
+set -m
 
-cd "$(dirname "$0")"
+echo "========================================"
+echo "  Datacenter Demand Simulator"
+echo "  Chris France — AI & Infrastructure"
+echo "========================================"
 
-# Check if virtual environment exists
-if [ ! -d "venv" ]; then
-    echo "Creating virtual environment..."
-    python3 -m venv venv
-fi
+SOURCE="$0"
+while [ -L "$SOURCE" ]; do
+  DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ "$SOURCE" != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
 
-# Activate virtual environment
-source venv/bin/activate
+BACKEND_PORT=3902
+FRONTEND_PORT=8602
+HEADLESS=false
 
-# Install dependencies
-echo "Installing dependencies..."
-pip install -q -r requirements.txt
+for arg in "$@"; do
+  case "$arg" in
+    --headless) HEADLESS=true ;;
+  esac
+done
 
-# Check Ollama status
+cleanup() {
+  echo ""
+  echo "Shutting down Datacenter Demand Simulator..."
+  lsof -ti :"$BACKEND_PORT" 2>/dev/null | xargs kill -9 2>/dev/null
+  lsof -ti :"$FRONTEND_PORT" 2>/dev/null | xargs kill -9 2>/dev/null
+  pkill -f "uvicorn main:app.*--port $BACKEND_PORT" 2>/dev/null
+  pkill -f "vite.*--port $FRONTEND_PORT" 2>/dev/null
+  echo "Stopped."
+}
+trap cleanup INT TERM EXIT
+
+lsof -ti :"$BACKEND_PORT" | xargs kill 2>/dev/null
+lsof -ti :"$FRONTEND_PORT" | xargs kill 2>/dev/null
+sleep 1
+
 echo ""
-echo "Checking Ollama status..."
-if curl -s http://localhost:11434/api/tags > /dev/null 2>&1; then
-    echo "✓ Ollama is running"
-    MODELS=$(curl -s http://localhost:11434/api/tags | python3 -c "import sys, json; data=json.load(sys.stdin); print(', '.join([m['name'] for m in data.get('models', [])]))" 2>/dev/null)
-    if [ -n "$MODELS" ]; then
-        echo "  Available models: $MODELS"
+echo "[1/2] Starting backend (FastAPI on :$BACKEND_PORT)..."
+(
+  cd "$DIR/backend"
+  pip3 install -r requirements.txt -q 2>/dev/null
+  exec python3 -m uvicorn main:app --reload --port "$BACKEND_PORT"
+) &
+
+echo "[2/2] Starting frontend (Vite on :$FRONTEND_PORT)..."
+(
+  cd "$DIR/frontend"
+  npm install --silent 2>/dev/null
+  exec npx vite --host --port "$FRONTEND_PORT"
+) &
+
+for i in $(seq 1 30); do
+  if curl -s http://localhost:"$FRONTEND_PORT" > /dev/null 2>&1; then
+    echo ""
+    echo "  Datacenter Demand Simulator is ready:"
+    echo "    Local:  http://localhost:$FRONTEND_PORT"
+    echo ""
+    echo "    Press Ctrl+C to stop."
+    echo ""
+    if [ "$HEADLESS" = false ]; then
+      open "http://localhost:$FRONTEND_PORT"
     fi
-else
-    echo "⚠ Ollama is not running (AI analysis will be disabled)"
-    echo "  To enable: run 'ollama serve' and 'ollama pull qwen2.5:14b'"
-fi
+    break
+  fi
+  sleep 1
+done
 
-echo ""
-echo "Starting Datacenter Demand Simulator..."
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo ""
-
-# Run Streamlit
-streamlit run app.py --server.headless true --browser.gatherUsageStats false
+wait

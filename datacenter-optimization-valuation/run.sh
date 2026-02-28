@@ -1,43 +1,73 @@
 #!/bin/bash
+set -m
 
-# Datacenter Deployment Optimizer - Launch Script
+echo "========================================"
+echo "  DC Optimization & Valuation"
+echo "  Chris France — AI & Infrastructure"
+echo "========================================"
 
-echo "=============================================="
-echo "  Datacenter Deployment Optimizer"
-echo "  PE/VC Investment Analysis Platform"
-echo "=============================================="
+SOURCE="$0"
+while [ -L "$SOURCE" ]; do
+  DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ "$SOURCE" != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
+
+BACKEND_PORT=3903
+FRONTEND_PORT=8603
+HEADLESS=false
+
+for arg in "$@"; do
+  case "$arg" in
+    --headless) HEADLESS=true ;;
+  esac
+done
+
+cleanup() {
+  echo ""
+  echo "Shutting down DC Optimization & Valuation..."
+  lsof -ti :"$BACKEND_PORT" 2>/dev/null | xargs kill -9 2>/dev/null
+  lsof -ti :"$FRONTEND_PORT" 2>/dev/null | xargs kill -9 2>/dev/null
+  pkill -f "uvicorn main:app.*--port $BACKEND_PORT" 2>/dev/null
+  pkill -f "vite.*--port $FRONTEND_PORT" 2>/dev/null
+  echo "Stopped."
+}
+trap cleanup INT TERM EXIT
+
+lsof -ti :"$BACKEND_PORT" | xargs kill 2>/dev/null
+lsof -ti :"$FRONTEND_PORT" | xargs kill 2>/dev/null
+sleep 1
+
 echo ""
+echo "[1/2] Starting backend (FastAPI on :$BACKEND_PORT)..."
+(
+  cd "$DIR/backend"
+  pip3 install -r requirements.txt -q 2>/dev/null
+  exec python3 -m uvicorn main:app --reload --port "$BACKEND_PORT"
+) &
 
-# Check if virtual environment exists
-if [ ! -d "venv" ]; then
-    echo "Creating virtual environment..."
-    python3 -m venv venv
-fi
+echo "[2/2] Starting frontend (Vite on :$FRONTEND_PORT)..."
+(
+  cd "$DIR/frontend"
+  npm install --silent 2>/dev/null
+  exec npx vite --host --port "$FRONTEND_PORT"
+) &
 
-# Activate virtual environment
-source venv/bin/activate
+for i in $(seq 1 30); do
+  if curl -s http://localhost:"$FRONTEND_PORT" > /dev/null 2>&1; then
+    echo ""
+    echo "  DC Optimization & Valuation is ready:"
+    echo "    Local:  http://localhost:$FRONTEND_PORT"
+    echo ""
+    echo "    Press Ctrl+C to stop."
+    echo ""
+    if [ "$HEADLESS" = false ]; then
+      open "http://localhost:$FRONTEND_PORT"
+    fi
+    break
+  fi
+  sleep 1
+done
 
-# Install dependencies
-echo "Checking dependencies..."
-pip install -q -r requirements.txt
-
-# Check Ollama status
-echo ""
-echo "Checking Ollama status..."
-if curl -s http://localhost:11434/api/tags > /dev/null 2>&1; then
-    echo "✓ Ollama is running"
-    echo "  Available models:"
-    curl -s http://localhost:11434/api/tags | python3 -c "import sys, json; models = json.load(sys.stdin).get('models', []); [print(f'    - {m[\"name\"]}') for m in models]" 2>/dev/null || echo "    (unable to list models)"
-else
-    echo "⚠ Ollama not detected at localhost:11434"
-    echo "  AI recommendations will use fallback logic"
-    echo "  To enable AI: brew install ollama && ollama serve"
-fi
-
-echo ""
-echo "Starting Streamlit application..."
-echo "=============================================="
-echo ""
-
-# Run Streamlit
-streamlit run app.py --server.headless true --browser.gatherUsageStats false
+wait

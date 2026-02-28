@@ -3,9 +3,11 @@ __pycache__/
 .env
 .venv/
 venv/
-.streamlit/secrets.toml
-.streamlit/cache/
-.DS_Store
 *.egg-info/
 dist/
 build/
+.DS_Store
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
