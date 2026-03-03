@@ -24,6 +24,9 @@ Thumbs.db
 *.sqlite3
 *.db
 
+# Private / confidential code (docs only in public repo)
+cio-ai-demos/
+
 # IDE
 .idea/
 .vscode/
