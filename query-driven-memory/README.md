@@ -2,7 +2,7 @@
 
 **Persistent AI memory with automatic retrieval — memories reinforce with use and decay over time.**
 
-A Streamlit chat application that automatically retrieves relevant past conversations on every query. No manual selection needed — QDM searches all stored memories, injects relevant context, and adapts over time. Frequently accessed memories strengthen; unused memories gradually fade and get pruned.
+A React + FastAPI application that automatically retrieves relevant past conversations on every query. No manual selection needed — QDM searches all stored memories, injects relevant context, and adapts over time. Frequently accessed memories strengthen; unused memories gradually fade and get pruned.
 
 > **Source code available upon request.** QDM is a proprietary implementation demonstrated as part of this portfolio. Contact me directly for a live demo or code walkthrough.
 
@@ -42,7 +42,7 @@ QDM sits between the user and Ollama, adding a persistent memory layer powered b
 
 ## Tech Stack
 
-Streamlit, Qdrant, Ollama
+React, FastAPI, Tailwind CSS, Qdrant, Ollama
 
 ## What Makes QDM Different from RAG
 

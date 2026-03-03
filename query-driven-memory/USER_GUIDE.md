@@ -90,11 +90,11 @@ Every memory starts with a relevance score of 10.0. Each time a memory is retrie
 
 Memories that haven't been accessed gradually lose relevance. For each day since a memory was last retrieved, its score drops by the decay rate (default 0.1 per day). A memory with a score of 10.0 that sits untouched for 30 days drops to 7.0. After 100 days of disuse, it reaches 0.0.
 
-Decay runs automatically when QDM launches and can be triggered manually from the sidebar. The decay rate is adjustable — lower values preserve memories longer, higher values are more aggressive about fading old content.
+Decay runs automatically when QDM launches and can be triggered manually from the settings panel. The decay rate is adjustable — lower values preserve memories longer, higher values are more aggressive about fading old content.
 
 ### Pruning
 
-Memories that have decayed below a relevance score of 1.0 and haven't been accessed in over 90 days are eligible for automatic deletion. Pruning is triggered manually via the sidebar — it never runs without your explicit action.
+Memories that have decayed below a relevance score of 1.0 and haven't been accessed in over 90 days are eligible for automatic deletion. Pruning is triggered manually via the settings panel — it never runs without your explicit action.
 
 This prevents the memory pool from growing indefinitely with stale content while ensuring nothing recent or actively used is ever removed.
 
@@ -130,7 +130,7 @@ The main panel is a standard chat interface. Type a message and press Enter. Res
 
 **New Conversation** — Starts a fresh session. The chat area clears, but all memories remain searchable. Previous conversations are still retrievable by relevance.
 
-### Sidebar
+### Settings Panel
 
 **Model Selector** — Dropdown of all models available in Ollama. Switch models at any time without losing memories.
 
@@ -144,7 +144,7 @@ The main panel is a standard chat interface. Type a message and press Enter. Res
 
 ### Memory Browser
 
-Located in the sidebar below the controls, with two tabs:
+Accessible from the main interface, with two tabs:
 
 **All Memories** — Every stored memory, sorted by most recent. Each entry shows text preview, timestamp, access count, relevance score, and pin status. You can pin/unpin, delete, or add personal notes to any memory.
 
