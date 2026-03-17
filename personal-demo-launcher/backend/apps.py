@@ -113,6 +113,21 @@ DEMOS = [
             },
         ],
     },
+    {
+        "id": "betty-email-assistant",
+        "name": "Betty — Email Assistant",
+        "path": str(BASE_DIR / "AI_Confidential_Code" / "betty"),
+        "description": (
+            "CJ's executive assistant module. Monitors all 3 email accounts "
+            "(AECOM, christopherfrance.com, Gmail), classifies with Ollama, "
+            "sends prioritized briefs to Outlook, and pushes urgent items to phone."
+        ),
+        "tech": ["Python", "Ollama", "SQLite", "IMAP", "Pushover"],
+        "port": 8608,
+        "cmd": "bash run.sh --headless",
+        "type": "react-fastapi",
+        "placeholder": True,
+    },
 ]
 
 DEMOS_BY_ID = {d["id"]: d for d in DEMOS}
