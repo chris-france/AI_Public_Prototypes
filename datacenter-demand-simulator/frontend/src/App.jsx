@@ -7,6 +7,7 @@ import ScenarioComparison from './components/ScenarioComparison'
 import DecisionTimeline from './components/DecisionTimeline'
 import AIAnalysisPanel from './components/AIAnalysisPanel'
 import useSimulation from './hooks/useSimulation'
+import FeedbackBar from './components/FeedbackBar'
 
 const TABS = [
   { id: 'capacity', label: 'Capacity Projections' },
@@ -66,6 +67,7 @@ export default function App() {
           </div>
         </div>
       </div>
+      <FeedbackBar appName="datacenter-demand-simulator" />
     </div>
   )
 }

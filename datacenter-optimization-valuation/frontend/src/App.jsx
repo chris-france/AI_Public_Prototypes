@@ -3,6 +3,7 @@ import Header from './components/Header'
 import DeploymentTab from './components/DeploymentTab'
 import ValuationTab from './components/ValuationTab'
 import BenchmarksTab from './components/BenchmarksTab'
+import FeedbackBar from './components/FeedbackBar'
 
 const TABS = [
   { id: 'deployment', label: 'Deployment Analysis' },
@@ -38,6 +39,7 @@ export default function App() {
         {tab === 'valuation' && <ValuationTab />}
         {tab === 'benchmarks' && <BenchmarksTab />}
       </main>
+      <FeedbackBar appName="datacenter-optimization-valuation" />
     </div>
   )
 }

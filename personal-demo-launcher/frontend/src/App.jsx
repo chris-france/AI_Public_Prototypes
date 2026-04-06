@@ -2,6 +2,7 @@ import Header from './components/Header'
 import AppGrid from './components/AppGrid'
 import useApps from './hooks/useApps'
 
+
 export default function App() {
   const { apps, loading, actionInProgress, startApp, stopApp, startAll, stopAll } = useApps()
 

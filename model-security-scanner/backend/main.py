@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from database import init_db
 from routers.scanner import router as scanner_router
+from routers.feedback import router as feedback_router
 
 app = FastAPI(title="Model Security Scanner")
 
@@ -16,5 +17,6 @@ app.add_middleware(
 )
 
 app.include_router(scanner_router)
+app.include_router(feedback_router)
 
 init_db()

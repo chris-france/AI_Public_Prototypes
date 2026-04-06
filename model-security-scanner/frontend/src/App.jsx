@@ -12,6 +12,7 @@ import TestCategories from './components/TestCategories'
 import useModels from './hooks/useModels'
 import useScan from './hooks/useScan'
 import useHistory from './hooks/useHistory'
+import FeedbackBar from './components/FeedbackBar'
 
 export default function App() {
   const { models, tests, loading: modelsLoading } = useModels()
@@ -75,6 +76,7 @@ export default function App() {
           </>
         )}
       </main>
+      <FeedbackBar appName="model-security-scanner" />
     </div>
   )
 }

@@ -1,0 +1,256 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1472CF"/>
+      <stop offset="100%" stop-color="#0891B2"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F9FAFB"/>
+      <stop offset="100%" stop-color="#F3F4F6"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <clipPath id="rounded">
+      <rect width="1200" height="680" rx="12"/>
+    </clipPath>
+  </defs>
+
+  <!-- Outer frame -->
+  <rect width="1200" height="680" rx="12" fill="url(#bgGrad)" clip-path="url(#rounded)"/>
+
+  <!-- Header gradient bar -->
+  <rect width="1200" height="56" fill="url(#headerGrad)" rx="12"/>
+  <rect y="12" width="1200" height="44" fill="url(#headerGrad)"/>
+
+  <!-- Header icon (lightning bolt in frosted box) -->
+  <rect x="28" y="12" width="32" height="32" rx="7" fill="white" fill-opacity="0.2"/>
+  <path d="M44 17 L40 28 L45 28 L42 39 L50 26 L45 26 L48 17 Z" fill="white" stroke="none"/>
+
+  <!-- Header text -->
+  <text x="68" y="35" fill="white" font-size="17" font-weight="700" letter-spacing="-0.3">Personal Demos</text>
+  <text x="196" y="35" fill="white" fill-opacity="0.7" font-size="11">port 8501</text>
+
+  <!-- Start All / Stop All buttons -->
+  <rect x="990" y="14" width="80" height="28" rx="7" fill="white" fill-opacity="0.2"/>
+  <text x="1015" y="33" fill="white" font-size="11" font-weight="500" text-anchor="middle">▶ Start All</text>
+  <rect x="1080" y="14" width="80" height="28" rx="7" fill="white" fill-opacity="0.2"/>
+  <text x="1107" y="33" fill="white" font-size="11" font-weight="500" text-anchor="middle">■ Stop All</text>
+
+  <!-- Sub-brand bar -->
+  <rect y="56" width="1200" height="28" fill="black" fill-opacity="0.1"/>
+  <rect y="56" width="1200" height="28" fill="url(#headerGrad)" opacity="0.85"/>
+  <text x="28" y="74" fill="white" fill-opacity="0.9" font-size="11" font-weight="500">Chris France</text>
+  <text x="1172" y="74" fill="white" fill-opacity="0.65" font-size="11" text-anchor="end">AI &amp; Infrastructure Prototypes</text>
+
+  <!-- ==================== ROW 1 ==================== -->
+
+  <!-- Card 1: Inference Cost Calculator -->
+  <g filter="url(#cardShadow)">
+    <rect x="28" y="104" width="272" height="245" rx="12" fill="white"/>
+  </g>
+  <text x="48" y="132" fill="#111827" font-size="13" font-weight="600">Inference Cost Calculator</text>
+  <!-- Status badge: Stopped -->
+  <rect x="218" y="118" width="64" height="20" rx="10" fill="#F3F4F6"/>
+  <circle cx="228" cy="128" r="3.5" fill="#9CA3AF"/>
+  <text x="236" y="132" fill="#6B7280" font-size="10" font-weight="500">Stopped</text>
+  <!-- Port -->
+  <text x="48" y="150" fill="#9CA3AF" font-size="10" font-family="monospace">port 8601</text>
+  <!-- Description -->
+  <text x="48" y="170" fill="#6B7280" font-size="10.5" line-height="1.5">
+    <tspan x="48" dy="0">Compare TCO for local GPU inference</tspan>
+    <tspan x="48" dy="15">vs cloud providers over 36 months.</tspan>
+    <tspan x="48" dy="15">Break-even analysis and cost-per-1K</tspan>
+    <tspan x="48" dy="15">inference comparison.</tspan>
+  </text>
+  <!-- Tech tags -->
+  <rect x="48" y="236" width="45" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="70" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">React</text>
+  <rect x="99" y="236" width="52" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="125" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">FastAPI</text>
+  <rect x="157" y="236" width="60" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="187" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Recharts</text>
+  <rect x="223" y="236" width="56" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="251" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Tailwind</text>
+  <!-- Action buttons -->
+  <rect x="48" y="268" width="64" height="28" rx="7" fill="#1472CF"/>
+  <text x="68" y="286" fill="white" font-size="11" font-weight="500">▶ Start</text>
+  <rect x="120" y="268" width="56" height="28" rx="7" fill="white" stroke="#E5E7EB"/>
+  <text x="134" y="286" fill="#9CA3AF" font-size="11" font-weight="500">Open</text>
+
+  <!-- Card 2: Datacenter Demand Simulator -->
+  <g filter="url(#cardShadow)">
+    <rect x="314" y="104" width="272" height="245" rx="12" fill="white"/>
+  </g>
+  <text x="334" y="132" fill="#111827" font-size="13" font-weight="600">Datacenter Demand Simulator</text>
+  <rect x="504" y="118" width="64" height="20" rx="10" fill="#F3F4F6"/>
+  <circle cx="514" cy="128" r="3.5" fill="#9CA3AF"/>
+  <text x="522" y="132" fill="#6B7280" font-size="10" font-weight="500">Stopped</text>
+  <text x="334" y="150" fill="#9CA3AF" font-size="10" font-family="monospace">port 8602</text>
+  <text x="334" y="170" fill="#6B7280" font-size="10.5">
+    <tspan x="334" dy="0">Forecast enterprise datacenter</tspan>
+    <tspan x="334" dy="15">capacity across compute, storage,</tspan>
+    <tspan x="334" dy="15">power, and cooling. Multi-scenario</tspan>
+    <tspan x="334" dy="15">projections with AI-powered analysis.</tspan>
+  </text>
+  <rect x="334" y="236" width="45" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="356" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">React</text>
+  <rect x="385" y="236" width="52" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="411" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">FastAPI</text>
+  <rect x="443" y="236" width="50" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="468" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Ollama</text>
+  <rect x="499" y="236" width="56" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="527" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Tailwind</text>
+  <rect x="334" y="268" width="64" height="28" rx="7" fill="#1472CF"/>
+  <text x="354" y="286" fill="white" font-size="11" font-weight="500">▶ Start</text>
+  <rect x="406" y="268" width="56" height="28" rx="7" fill="white" stroke="#E5E7EB"/>
+  <text x="420" y="286" fill="#9CA3AF" font-size="11" font-weight="500">Open</text>
+
+  <!-- Card 3: Datacenter Optimization & Valuation -->
+  <g filter="url(#cardShadow)">
+    <rect x="600" y="104" width="272" height="245" rx="12" fill="white"/>
+  </g>
+  <text x="620" y="126" fill="#111827" font-size="13" font-weight="600">Datacenter Optimization</text>
+  <text x="620" y="142" fill="#111827" font-size="13" font-weight="600">&amp; Valuation</text>
+  <rect x="790" y="118" width="64" height="20" rx="10" fill="#F3F4F6"/>
+  <circle cx="800" cy="128" r="3.5" fill="#9CA3AF"/>
+  <text x="808" y="132" fill="#6B7280" font-size="10" font-weight="500">Stopped</text>
+  <text x="620" y="160" fill="#9CA3AF" font-size="10" font-family="monospace">port 8603</text>
+  <text x="620" y="178" fill="#6B7280" font-size="10.5">
+    <tspan x="620" dy="0">PE/VC datacenter investment</tspan>
+    <tspan x="620" dy="15">analysis. Compare ground-up,</tspan>
+    <tspan x="620" dy="15">modular, and hybrid builds with</tspan>
+    <tspan x="620" dy="15">M&amp;A valuation across 14 markets.</tspan>
+  </text>
+  <rect x="620" y="236" width="45" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="642" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">React</text>
+  <rect x="671" y="236" width="52" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="697" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">FastAPI</text>
+  <rect x="729" y="236" width="60" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="759" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Recharts</text>
+  <rect x="795" y="236" width="50" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="820" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Ollama</text>
+  <rect x="620" y="268" width="64" height="28" rx="7" fill="#1472CF"/>
+  <text x="640" y="286" fill="white" font-size="11" font-weight="500">▶ Start</text>
+  <rect x="692" y="268" width="56" height="28" rx="7" fill="white" stroke="#E5E7EB"/>
+  <text x="706" y="286" fill="#9CA3AF" font-size="11" font-weight="500">Open</text>
+
+  <!-- Card 4: Model Security Scanner -->
+  <g filter="url(#cardShadow)">
+    <rect x="886" y="104" width="286" height="245" rx="12" fill="white"/>
+  </g>
+  <text x="906" y="132" fill="#111827" font-size="13" font-weight="600">Model Security Scanner</text>
+  <rect x="1090" y="118" width="64" height="20" rx="10" fill="#F3F4F6"/>
+  <circle cx="1100" cy="128" r="3.5" fill="#9CA3AF"/>
+  <text x="1108" y="132" fill="#6B7280" font-size="10" font-weight="500">Stopped</text>
+  <text x="906" y="150" fill="#9CA3AF" font-size="10" font-family="monospace">port 8604</text>
+  <text x="906" y="170" fill="#6B7280" font-size="10.5">
+    <tspan x="906" dy="0">Test LLM security across 10 attack</tspan>
+    <tspan x="906" dy="15">categories. Scans Ollama models</tspan>
+    <tspan x="906" dy="15">and Claude API for vulnerabilities.</tspan>
+  </text>
+  <rect x="906" y="236" width="45" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="928" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">React</text>
+  <rect x="957" y="236" width="52" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="983" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">FastAPI</text>
+  <rect x="1015" y="236" width="50" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="1040" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Ollama</text>
+  <rect x="1071" y="236" width="76" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="1109" y="250" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Anthropic API</text>
+  <rect x="906" y="268" width="64" height="28" rx="7" fill="#1472CF"/>
+  <text x="926" y="286" fill="white" font-size="11" font-weight="500">▶ Start</text>
+  <rect x="978" y="268" width="56" height="28" rx="7" fill="white" stroke="#E5E7EB"/>
+  <text x="992" y="286" fill="#9CA3AF" font-size="11" font-weight="500">Open</text>
+
+  <!-- ==================== ROW 2 ==================== -->
+
+  <!-- Card 5: Local RAG System -->
+  <g filter="url(#cardShadow)">
+    <rect x="28" y="369" width="272" height="245" rx="12" fill="white"/>
+  </g>
+  <text x="48" y="397" fill="#111827" font-size="13" font-weight="600">Local RAG System</text>
+  <!-- Status badge: Running -->
+  <rect x="206" y="383" width="76" height="20" rx="10" fill="#ECFDF5"/>
+  <circle cx="218" cy="393" r="3.5" fill="#10B981"/>
+  <text x="227" y="397" fill="#047857" font-size="10" font-weight="500">Running</text>
+  <text x="48" y="415" fill="#9CA3AF" font-size="10" font-family="monospace">port 8605</text>
+  <text x="48" y="435" fill="#6B7280" font-size="10.5">
+    <tspan x="48" dy="0">Open WebUI + Qdrant for persistent</tspan>
+    <tspan x="48" dy="15">memory. Chat with Ollama models,</tspan>
+    <tspan x="48" dy="15">upload docs, memory persists</tspan>
+    <tspan x="48" dy="15">across sessions.</tspan>
+  </text>
+  <rect x="48" y="501" width="68" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="82" y="515" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Open WebUI</text>
+  <rect x="122" y="501" width="49" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="146" y="515" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Qdrant</text>
+  <rect x="177" y="501" width="50" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="202" y="515" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Ollama</text>
+  <rect x="233" y="501" width="50" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="258" y="515" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Docker</text>
+  <!-- Running state: Stop + Open buttons -->
+  <rect x="48" y="533" width="56" height="28" rx="7" fill="white" stroke="#E5E7EB"/>
+  <text x="63" y="551" fill="#6B7280" font-size="11" font-weight="500">■ Stop</text>
+  <rect x="112" y="533" width="64" height="28" rx="7" fill="white" stroke="#1472CF" stroke-opacity="0.2"/>
+  <text x="130" y="551" fill="#1472CF" font-size="11" font-weight="500">↗ Open</text>
+
+  <!-- Card 6: n8n Workflow Canvas -->
+  <g filter="url(#cardShadow)">
+    <rect x="314" y="369" width="272" height="245" rx="12" fill="white"/>
+  </g>
+  <text x="334" y="397" fill="#111827" font-size="13" font-weight="600">n8n Workflow Canvas</text>
+  <!-- Status badge: Coming Soon -->
+  <rect x="480" y="383" width="88" height="20" rx="10" fill="#FFFBEB"/>
+  <circle cx="492" cy="393" r="3.5" fill="#FBBF24"/>
+  <text x="500" y="397" fill="#B45309" font-size="10" font-weight="500">Coming Soon</text>
+  <text x="334" y="415" fill="#9CA3AF" font-size="10" font-family="monospace">port 8606</text>
+  <text x="334" y="435" fill="#6B7280" font-size="10.5">
+    <tspan x="334" dy="0">Visual workflow automation. Connect</tspan>
+    <tspan x="334" dy="15">APIs, build automations, and</tspan>
+    <tspan x="334" dy="15">orchestrate tasks with a node-based</tspan>
+    <tspan x="334" dy="15">canvas.</tspan>
+  </text>
+  <rect x="334" y="501" width="30" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="349" y="515" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">n8n</text>
+  <rect x="370" y="501" width="50" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="395" y="515" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Docker</text>
+  <rect x="426" y="501" width="52" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="452" y="515" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Node.js</text>
+  <!-- Disabled buttons -->
+  <rect x="334" y="533" width="64" height="28" rx="7" fill="#F3F4F6"/>
+  <text x="353" y="551" fill="#D1D5DB" font-size="11" font-weight="500">▶ Start</text>
+  <rect x="406" y="533" width="56" height="28" rx="7" fill="#F3F4F6"/>
+  <text x="420" y="551" fill="#D1D5DB" font-size="11" font-weight="500">Open</text>
+
+  <!-- Card 7: Query-Driven Memory (QDM) -->
+  <g filter="url(#cardShadow)">
+    <rect x="600" y="369" width="272" height="245" rx="12" fill="white"/>
+  </g>
+  <text x="620" y="397" fill="#111827" font-size="13" font-weight="600">Query-Driven Memory (QDM)</text>
+  <rect x="790" y="383" width="64" height="20" rx="10" fill="#F3F4F6"/>
+  <circle cx="800" cy="393" r="3.5" fill="#9CA3AF"/>
+  <text x="808" y="397" fill="#6B7280" font-size="10" font-weight="500">Stopped</text>
+  <text x="620" y="415" fill="#9CA3AF" font-size="10" font-family="monospace">port 8607</text>
+  <text x="620" y="435" fill="#6B7280" font-size="10.5">
+    <tspan x="620" dy="0">Persistent AI memory system.</tspan>
+    <tspan x="620" dy="15">Automatically retrieves relevant past</tspan>
+    <tspan x="620" dy="15">conversations on every query — no</tspan>
+    <tspan x="620" dy="15">manual selection needed.</tspan>
+  </text>
+  <rect x="620" y="501" width="45" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="642" y="515" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">React</text>
+  <rect x="671" y="501" width="52" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="697" y="515" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">FastAPI</text>
+  <rect x="729" y="501" width="49" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="753" y="515" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Qdrant</text>
+  <rect x="784" y="501" width="50" height="20" rx="5" fill="#1472CF" fill-opacity="0.08"/>
+  <text x="809" y="515" fill="#1472CF" font-size="10" font-weight="500" text-anchor="middle">Ollama</text>
+  <rect x="620" y="533" width="64" height="28" rx="7" fill="#1472CF"/>
+  <text x="640" y="551" fill="white" font-size="11" font-weight="500">▶ Start</text>
+  <rect x="692" y="533" width="56" height="28" rx="7" fill="white" stroke="#E5E7EB"/>
+  <text x="706" y="551" fill="#9CA3AF" font-size="11" font-weight="500">Open</text>
+
+  <!-- Subtle bottom border -->
+  <rect y="668" width="1200" height="12" rx="0" fill="url(#headerGrad)" opacity="0.15"/>
+  <rect y="674" width="1200" height="6" rx="6" fill="url(#bgGrad)"/>
+</svg>

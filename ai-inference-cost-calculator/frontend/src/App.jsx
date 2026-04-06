@@ -6,6 +6,7 @@ import CostPerInferenceChart from './components/CostPerInferenceChart'
 import ComparisonTable from './components/ComparisonTable'
 import HardwareTable from './components/HardwareTable'
 import useCalculator from './hooks/useCalculator'
+import FeedbackBar from './components/FeedbackBar'
 
 export default function App() {
   const { config, form, setField, results, loading } = useCalculator()
@@ -40,6 +41,7 @@ export default function App() {
           Compare TCO for local GPU builds vs cloud providers over 36 months
         </p>
       </footer>
+      <FeedbackBar appName="ai-inference-cost-calculator" />
     </div>
   )
 }
