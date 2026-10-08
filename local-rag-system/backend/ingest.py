@@ -4,7 +4,7 @@ Supports PDF, DOCX, and TXT file parsing with page mapping for PDFs.
 """
 
 import io
-from PyPDF2 import PdfReader
+from pypdf import PdfReader
 from docx import Document
 
 
